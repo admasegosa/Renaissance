@@ -271,7 +271,7 @@
       <figure class="map-card">
         <svg id="netmap" viewBox="0 0 640 500" role="img" aria-labelledby="mapTitle mapDesc">
           <title id="mapTitle">RENAISSANCE network map</title>
-          <desc id="mapDesc">Three research lines drawn as transit lines, each stopping at the cities where its methods were validated: last-mile logistics (Dublin, Zaragoza), transport network management (Athens, Manchester, The Hague, Madrid) and road safety (Madrid). All three meet at the software toolkit, which connects to the open data published on Zenodo.</desc>
+          <desc id="mapDesc">Three research lines drawn as transit lines, each stopping at the kinds of use case where its methods were validated: last-mile logistics (city-centre parcel delivery, zero-emission zones), transport network management (congestion pricing, signal control, roadworks, on-demand transit) and road safety (crash records, graph and explainable models). All three meet at the software toolkit, which connects to the open data published on Zenodo.</desc>
           <g aria-hidden="true">
             <path d="M0 410 C 120 370, 200 440, 330 420 S 560 340, 640 370 L640 440 C 560 410, 440 480, 330 480 S 120 440, 0 470 Z" fill="var(--river)"/>
             <g class="street">
@@ -291,8 +291,8 @@
               <circle class="stop" stroke="var(--logistics)" cx="50" cy="80" r="9"/>
               <circle class="stop" stroke="var(--logistics)" cx="170" cy="80" r="9"/>
               <circle class="stop" stroke="var(--logistics)" cx="238" cy="186" r="9"/>
-              <text class="lbl" x="32" y="62">Dublin</text>
-              <text class="lbl" x="150" y="62">Zaragoza</text>
+              <text class="lbl" x="22" y="62">Parcel delivery</text>
+              <text class="lbl" x="150" y="108">Zero-emission zone</text>
               <text class="lbl" x="252" y="180">Last-mile solver</text>
             </g>
           </g>
@@ -305,10 +305,10 @@
               <circle class="stop" stroke="var(--network)" cx="480" cy="120" r="9"/>
               <circle class="stop" stroke="var(--network)" cx="480" cy="185" r="9"/>
               <circle class="stop" stroke="var(--network)" cx="480" cy="250" r="9"/>
-              <text class="lbl" x="556" y="42">Athens</text>
-              <text class="lbl" x="494" y="126">Manchester</text>
-              <text class="lbl" x="494" y="191">The Hague</text>
-              <text class="lbl" x="494" y="256">Madrid · DRT</text>
+              <text class="lbl" x="612" y="42" text-anchor="end">Congestion pricing</text>
+              <text class="lbl" x="494" y="126">Signal control</text>
+              <text class="lbl" x="494" y="191">Roadworks</text>
+              <text class="lbl" x="494" y="256">On-demand transit</text>
             </g>
           </g>
 
@@ -318,7 +318,7 @@
             <g class="fade">
               <circle class="stop" stroke="var(--safety)" cx="50" cy="440" r="9"/>
               <circle class="stop" stroke="var(--safety)" cx="200" cy="383" r="9"/>
-              <text class="lbl" x="28" y="422">Madrid crashes</text>
+              <text class="lbl" x="28" y="422">Crash records</text>
               <text class="lbl" x="214" y="398">Graph + XAI models</text>
             </g>
           </g>
@@ -355,7 +355,7 @@
     <div class="wrap">
       <h2>What RENAISSANCE achieved</h2>
       <p class="intro">Transport is central to the European and Spanish economy, but it also brings congestion, emissions and road crashes. RENAISSANCE set out to tackle these problems with new Artificial Intelligence techniques that exploit today's abundance of mobility data and the arrival of electric, shared and on-demand services.</p>
-      <p>Over 36 months the project met all its objectives and milestones. Its methods were integrated into a software toolkit and tested on real use cases in Dublin, Madrid, Manchester, Athens and other cities. The work has led to new European, national and regional projects and to a technology transfer contract with industry.</p>
+      <p>Over 36 months the project met all its objectives and milestones. Its methods were integrated into a software toolkit and tested on real use cases in several European cities. The work has led to new European, national and regional projects and to a technology transfer contract with industry.</p>
       <div class="numbers" role="list" aria-label="Project results in numbers">
         <div role="listitem"><strong>16</strong><span>peer-reviewed journal articles, 14 in JCR journals</span></div>
         <div role="listitem"><strong>6</strong><span>book chapters</span></div>
@@ -382,7 +382,7 @@
           <ol class="stops">
             <li><b>Hyper-heuristics and reinforcement learning</b><span>Adaptive simulated annealing with reinforcement learning for the electric vehicle routing problem, and a reusable reinforcement learning environment for routing.</span></li>
             <li><b>Ant colony and hybrid metaheuristics</b><span>A multi-strategy ant colony system for routing with time windows, and methods for dynamic location and warehouse layout problems.</span></li>
-            <li><b>An intelligent last-mile solver</b><span>Used to simulate urban logistics scenarios (consolidation centres, low-emission zones, pedestrian areas, micro-hubs) in Dublin and Zaragoza.</span></li>
+            <li><b>An intelligent last-mile solver</b><span>Used to simulate urban logistics scenarios (consolidation centres, low-emission zones, pedestrian areas, micro-hubs) in two European cities.</span></li>
           </ol>
         </article>
 
@@ -393,8 +393,8 @@
             <p>Optimisation methods to synchronise on-demand services with public transport, tune traffic signals and design dynamic congestion pricing, tested with the Aimsun Next and SUMO simulators.</p>
           </div>
           <ol class="stops">
-            <li><b>On-demand transport and freight on transit</b><span>Adaptive Large Neighbourhood Search to synchronise demand-responsive transport with transit, and simulation-based optimisation of parcels carried on autonomous on-demand services in peri-urban Madrid.</span></li>
-            <li><b>Signals, pricing, roadworks and superblocks</b><span>LLM-guided Bayesian optimisation of traffic signals, congestion pricing for Athens, roadworks scheduling, and the evaluation of superblocks.</span></li>
+            <li><b>On-demand transport and freight on transit</b><span>Adaptive Large Neighbourhood Search to synchronise demand-responsive transport with transit, and simulation-based optimisation of parcels carried on autonomous on-demand services in a peri-urban area.</span></li>
+            <li><b>Signals, pricing, roadworks and superblocks</b><span>LLM-guided Bayesian optimisation of traffic signals, dynamic congestion pricing, roadworks scheduling, and the evaluation of superblocks.</span></li>
             <li><b>Faster evaluation with surrogates</b><span>GSPINN, a physics-informed graph surrogate that predicts trip travel times in milliseconds, and a study of neural surrogates inside Differential Evolution.</span></li>
           </ol>
         </article>
@@ -406,7 +406,7 @@
             <p>Crash prediction models based on graphs and deep learning that integrate new and heterogeneous data sources, and work on making those models explainable and trustworthy for road authorities.</p>
           </div>
           <ol class="stops">
-            <li><b>Graph data models of the road network</b><span>A labelled graph framework that brings together crash records, traffic density and connected vehicle data to find accident hotspots in Madrid.</span></li>
+            <li><b>Graph data models of the road network</b><span>A labelled graph framework that brings together crash records, traffic density and connected vehicle data to find accident hotspots in a large city.</span></li>
             <li><b>Explainable predictions</b><span>GraphLIME and a study of how preprocessing, hyperparameter tuning and algorithm choice change what crash models explain.</span></li>
             <li><b>Better calibrated AutoML</b><span>The role of ensemble diversity in the accuracy and calibration of AutoML, as a basis for more robust risk prediction.</span></li>
           </ol>
@@ -424,16 +424,16 @@
   <section id="cases">
     <div class="wrap">
       <h2>Use cases</h2>
-      <p class="intro">The methods were validated with real data, provided by public open-data portals and by partners under confidentiality agreements.</p>
+      <p class="intro">The methods were validated with real data from European and international cities, provided by public open-data portals and by partners under confidentiality agreements. To respect those agreements, the use cases are described here in general terms.</p>
       <div class="cases">
-        <div class="case"><b>Dublin</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Parcel deliveries of a postal operator in the city centre: consolidation, low-emission zones, pedestrian areas and micro-hubs, across four demand levels.</p></div>
-        <div class="case"><b>Zaragoza</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Postal deliveries in the historic centre with a zero-emission zone, an urban consolidation centre and different levels of fleet electrification.</p></div>
-        <div class="case"><b>Madrid · El Álamo</b><span class="tag" style="background:var(--network)">Network</span><p>Demand-responsive transport integrated with public transport, and parcels carried on autonomous on-demand services in a peri-urban area.</p></div>
-        <div class="case"><b>Athens</b><span class="tag" style="background:var(--network)">Network</span><p>Dynamic congestion pricing strategies evaluated on a mesoscopic Aimsun Next model of the city.</p></div>
-        <div class="case"><b>Manchester</b><span class="tag" style="background:var(--network)">Network</span><p>Optimisation of traffic signal plans on a mesoscopic Aimsun Next model of the metropolitan network.</p></div>
-        <div class="case"><b>The Hague</b><span class="tag" style="background:var(--network)">Network</span><p>Scheduling of roadworks in a multimodal network to reduce congestion and emissions.</p></div>
-        <div class="case"><b>Madrid</b><span class="tag" style="background:var(--safety)">Road safety</span><p>Accident hotspot prediction for vulnerable road users from open crash records, road network, traffic demand and connected vehicle events.</p></div>
-        <div class="case"><b>Fort Worth</b><span class="tag" style="background:var(--network)">Network</span><p>Optimal location of superblocks with agent-based and microscopic traffic simulation.</p></div>
+        <div class="case"><b>City-centre parcel delivery</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Parcel deliveries of a postal operator in the centre of a European capital: consolidation, low-emission zones, pedestrian areas and micro-hubs, across four demand levels.</p></div>
+        <div class="case"><b>Historic centre with a zero-emission zone</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Postal deliveries in the historic centre of a Spanish city with a zero-emission zone, an urban consolidation centre and different levels of fleet electrification.</p></div>
+        <div class="case"><b>Peri-urban on-demand transport</b><span class="tag" style="background:var(--network)">Network</span><p>Demand-responsive transport integrated with public transport, and parcels carried on autonomous on-demand services in a peri-urban area.</p></div>
+        <div class="case"><b>Congestion pricing</b><span class="tag" style="background:var(--network)">Network</span><p>Dynamic congestion pricing strategies evaluated on a mesoscopic traffic model of a European capital.</p></div>
+        <div class="case"><b>Traffic signal control</b><span class="tag" style="background:var(--network)">Network</span><p>Optimisation of traffic signal plans on a mesoscopic traffic model of a metropolitan network.</p></div>
+        <div class="case"><b>Roadworks planning</b><span class="tag" style="background:var(--network)">Network</span><p>Scheduling of roadworks in a regional multimodal network to reduce congestion and emissions.</p></div>
+        <div class="case"><b>Accident hotspots</b><span class="tag" style="background:var(--safety)">Road safety</span><p>Accident hotspot prediction for vulnerable road users in a large city, from open crash records, road network, traffic demand and connected vehicle events.</p></div>
+        <div class="case"><b>Superblocks</b><span class="tag" style="background:var(--network)">Network</span><p>Optimal location of superblocks in a city network with agent-based and microscopic traffic simulation.</p></div>
         <div class="case"><b>Benchmarks</b><span class="tag" style="background:var(--ink-soft)">Methods</span><p>Public benchmarks for routing, AutoML, image segmentation and traffic simulation, so that results can be reproduced and compared.</p></div>
       </div>
     </div>
@@ -473,19 +473,19 @@
         <table>
           <thead><tr><th scope="col">Data</th><th scope="col">Source</th><th scope="col">Used in</th><th scope="col">Access</th></tr></thead>
           <tbody>
-            <tr><td>Traffic accidents in Madrid since 2010</td><td><a href="https://datos.madrid.es">Madrid City Council open data portal</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Traffic accident records</td><td><a href="https://datos.madrid.es">Madrid City Council open data portal</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Road networks</td><td><a href="https://www.openstreetmap.org">OpenStreetMap</a> (ODbL)</td><td>All lines</td><td><span class="pill open">Open</span></td></tr>
-            <tr><td>Public transport timetables (GTFS) for Madrid</td><td><a href="https://www.crtm.es/licencia-de-uso/">Consorcio Regional de Transportes de Madrid</a></td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Public transport timetables (GTFS)</td><td><a href="https://www.crtm.es/licencia-de-uso/">Consorcio Regional de Transportes de Madrid</a></td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Planned roadworks in the Netherlands</td><td><a href="https://english.ndw.nu/products-and-services/melvin">MELVIN (NDW)</a></td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Traffic simulation scenarios of Ingolstadt and Cologne, Monaco and Luxembourg</td><td><a href="https://github.com/Pi-Star-Lab/RESCO">RESCO</a>, <a href="https://github.com/lcodeca/MoSTScenario">MoST</a> and <a href="https://github.com/lcodeca/LuSTScenario">LuST</a> for SUMO</td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Electric vehicle routing instances</td><td><a href="https://mavrovouniotis.github.io/EVRPcompetition2020">CEVRP benchmark (WCCI 2020)</a></td><td>Logistics</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Classification datasets for AutoML</td><td><a href="https://openml.github.io/automlbenchmark/">AutoML Benchmark (OpenML)</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
             <tr><td>Images and traffic camera video for vehicle segmentation</td><td><a href="https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/">BSDS500</a> and a <a href="https://www.kaggle.com/foyecey/traffic-road">traffic camera video on Kaggle</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
-            <tr><td>Parcel delivery records, fleets and depots (Dublin, Zaragoza)</td><td>Postal operators</td><td>Logistics</td><td><span class="pill restricted">Confidential</span></td></tr>
-            <tr><td>Public transport occupancy and origin–destination matrices from mobile network data (Madrid)</td><td>Nommon</td><td>Network management, road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
-            <tr><td>Last-mile logistics data (Madrid)</td><td>Logistics operator</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
-            <tr><td>Traffic simulation models (Athens, Manchester) and regional traffic model with floating car data (The Hague)</td><td>Research partner, transport authorities and a data provider</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
-            <tr><td>Anonymised harsh-manoeuvre events from connected vehicles (Madrid)</td><td>Connected vehicle data provider</td><td>Road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Parcel delivery records, fleets and depots</td><td>Postal operators</td><td>Logistics</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Public transport occupancy and origin–destination matrices from mobile network data</td><td>Mobility data provider</td><td>Network management, road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Last-mile logistics data</td><td>Logistics operator</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Traffic simulation models, regional traffic model and floating car data</td><td>Research partners, transport authorities and data providers</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Anonymised harsh-manoeuvre events from connected vehicles</td><td>Connected vehicle data provider</td><td>Road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -624,7 +624,7 @@
       <div class="next">
         <div class="person"><b><a href="https://admasegosa.github.io/Intrinsic/">INTRINSIC</a></b><span>Follow-up project (PID2025-168565OB-I00, 2026–2029) on drones, agentic AI and real-time crash risk.</span></div>
         <div class="person"><b>AcceptRemote</b><span>Horizon Europe project (2026–2029) on the acceptance of remote operations for future mobility.</span></div>
-        <div class="person"><b>InCharge and IZAR</b><span>A CDTI contract with Nommon on electric vehicle charging networks, and an Elkartek project that brings these methods to industry.</span></div>
+        <div class="person"><b>InCharge and IZAR</b><span>A CDTI R&amp;D contract with a company on electric vehicle charging networks, and an Elkartek project that brings these methods to industry.</span></div>
       </div>
     </div>
   </section>
