@@ -1,115 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI4Transport</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RENAISSANCE · AI for sustainable, safe and resilient mobility</title>
+<meta name="description" content="RENAISSANCE (PID2022-140612OB-I00): new Artificial Intelligence techniques to improve the sustainability, safety and resilience of urban mobility and freight transport. Publications, open data and results. University of Deusto.">
+<meta property="og:title" content="RENAISSANCE – REsearch on New Artificial Intelligence techniques to Improve Sustainability, SAfety and resilieNCE of mobility">
+<meta property="og:description" content="Research project of the University of Deusto funded by MICIU/AEI (PID2022-140612OB-I00), 2023–2026. Publications, open data and results.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  "name": "RENAISSANCE",
+  "alternateName": "REsearch on New Artificial Intelligence techniques to Improve Sustainability, SAfety and resilieNCE of mobility",
+  "identifier": "PID2022-140612OB-I00",
+  "url": "https://admasegosa.github.io/Renaissance/",
+  "startDate": "2023-09-01",
+  "endDate": "2026-08-31",
+  "funder": {"@type": "Organization", "name": "Agencia Estatal de Investigación", "identifier": "https://ror.org/003x0zc53"},
+  "parentOrganization": {"@type": "CollegeOrUniversity", "name": "Universidad de Deusto", "identifier": "https://ror.org/00ne6sr39"},
+  "sameAs": ["https://zenodo.org/communities/renaissance-pid2022-140612ob-i00"]
+}
+</script>
+<style>
+  :root {
+    --paper: #F3F5F4;
+    --surface: #FFFFFF;
+    --ink: #1B2A33;
+    --ink-soft: #4A5A63;
+    --grid: #D9DFDD;
+    --logistics: #D8941A;
+    --network: #2F6FB2;
+    --safety: #C4423C;
+    --open: #2E8B6A;
+    --open-soft: #E3F1EB;
+    --river: #DCE8EE;
+    --focus: #2F6FB2;
+    --measure: 68ch;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Overpass", system-ui, sans-serif; font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--network); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } html { font-size: 17px; } }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 6px; z-index: 20; }
+  .skip:focus { left: 12px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar { position: sticky; top: 0; z-index: 10; background: rgba(243,245,244,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid); }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 60px; }
+  .wordmark { font-weight: 900; font-size: 1.05rem; letter-spacing: .04em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .wordmark img { flex: none; display: block; }
+  .topbar nav { display: flex; gap: 20px; }
+  .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: .86rem; font-weight: 600; }
+  .topbar nav a:hover { color: var(--ink); }
+  .topbar nav a.open-link { color: var(--open); }
+  @media (max-width: 900px) { .topbar nav a:not(.open-link) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 60px 0 40px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 40px; align-items: center; }
+  @media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } .hero { padding-top: 36px; } }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--open); background: var(--open-soft); border-radius: 999px; padding: 5px 12px 3px; margin: 0 0 16px; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--open); }
+  .acronym { font-weight: 900; font-size: clamp(2.1rem, 4.2vw, 3.6rem); line-height: .95; letter-spacing: .01em; margin: 0 0 16px; }
+  .fulltitle { font-size: 1.22rem; line-height: 1.4; font-weight: 300; color: var(--ink-soft); margin: 0 0 24px; max-width: 32ch; }
+  .fulltitle b { font-weight: 900; color: var(--ink); }
+  .lede { font-size: 1.05rem; max-width: 46ch; margin: 0 0 26px; }
+  .facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin: 0; font-size: .88rem; }
+  .facts dt { color: var(--ink-soft); }
+  .facts dd { margin: 0; font-weight: 600; }
+  .hero-funder { display: block; margin-top: 24px; width: 100%; max-width: 360px; height: auto; border-radius: 4px; }
+
+  .map-card { background: var(--surface); border: 1px solid var(--grid); border-radius: 14px; padding: 14px 14px 10px; margin: 0; }
+  .map-card svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 4px 4px; padding: 0; list-style: none; }
+  .legend button { font: inherit; font-size: .8rem; font-weight: 600; color: var(--ink); display: inline-flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--grid); border-radius: 999px; padding: 5px 12px 4px; cursor: pointer; }
+  .legend button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .legend i { width: 18px; height: 5px; border-radius: 3px; display: inline-block; }
+
+  .street { stroke: var(--grid); stroke-width: 1; }
+  .avenue { stroke: #C9D1CE; stroke-width: 6; stroke-linecap: round; fill: none; }
+  .route { fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+  .route.data { stroke-width: 6; stroke-dasharray: 2 11; }
+  .stop { fill: #fff; stroke-width: 4; }
+  .lbl { font-family: "Overpass", sans-serif; font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+  .lbl.big { font-size: 15px; font-weight: 800; }
+  .line-group { transition: opacity .25s; }
+  svg.focus-logistics .line-group:not(.g-logistics),
+  svg.focus-network .line-group:not(.g-network),
+  svg.focus-safety .line-group:not(.g-safety),
+  svg.focus-open .line-group:not(.g-open) { opacity: .15; }
+  @media (max-width: 520px) { .lbl:not(.big) { font-size: 15px; } }
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.6,.05,.3,1) forwards; }
+  .g-network .draw { animation-delay: .3s; }
+  .g-safety .draw { animation-delay: .6s; }
+  .fade { opacity: 0; animation: fade .6s ease-out forwards; animation-delay: 1.4s; }
+  .g-network .fade { animation-delay: 1.7s; }
+  .g-safety .fade { animation-delay: 2s; }
+  .g-open .fade, .hub.fade { animation-delay: 2.3s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fade { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .draw { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; } .fade { animation: none; opacity: 1; } }
+
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; scroll-margin-top: 60px; }
+  section + section { border-top: 1px solid var(--grid); }
+  h2 { font-weight: 900; font-size: 2.1rem; line-height: 1.1; margin: 0 0 20px; letter-spacing: -.005em; }
+  h3 { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin: 0 0 10px; }
+  h4 { font-weight: 800; font-size: 1.05rem; margin: 0 0 8px; }
+  .intro { font-size: 1.12rem; max-width: var(--measure); margin: 0 0 16px; }
+  p { max-width: var(--measure); }
+
+  /* numbers */
+  .numbers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; margin-top: 28px; border-top: 1px solid var(--grid); border-bottom: 1px solid var(--grid); }
+  .numbers div { padding: 18px 18px 16px 0; }
+  .numbers div + div { padding-left: 18px; border-left: 1px solid var(--grid); }
+  .numbers strong { display: block; font-size: 2.2rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+  .numbers span { font-size: .88rem; color: var(--ink-soft); }
+  @media (max-width: 860px) { .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } .numbers div, .numbers div + div { padding: 16px 12px 14px 0; border-left: 0; border-top: 1px solid var(--grid); } .numbers div:nth-child(-n+2) { border-top: 0; } }
+
+  /* research lines */
+  .lines { display: grid; gap: 28px; margin-top: 36px; }
+  .line-card { background: var(--surface); border-radius: 14px; padding: 30px 32px 30px 30px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 36px; border: 1px solid var(--grid); }
+  @media (max-width: 860px) { .line-card { grid-template-columns: 1fr; gap: 18px; padding: 24px 20px; } }
+  .line-name { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .bullet { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 900; font-size: 1rem; flex: none; }
+  .line-name small { font-weight: 600; color: var(--ink-soft); font-size: .85rem; }
+  .line-card p { margin: 0 0 12px; }
+  .stops { list-style: none; margin: 0; padding: 0; position: relative; }
+  .stops::before { content: ""; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 6px; border-radius: 3px; background: var(--c); }
+  .stops li { position: relative; padding: 0 0 18px 40px; }
+  .stops li:last-child { padding-bottom: 0; }
+  .stops li::before { content: ""; position: absolute; left: 2px; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 4px solid var(--c); box-sizing: border-box; }
+  .stops b { display: block; font-weight: 800; }
+  .stops span { font-size: .92rem; color: var(--ink-soft); }
+  .interchange { margin-top: 28px; display: flex; gap: 18px; align-items: center; padding: 22px 26px; border: 3px solid var(--ink); border-radius: 14px; background: var(--surface); }
+  .interchange svg { flex: none; }
+  .interchange p { margin: 0; }
+
+  /* use cases */
+  .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; margin-top: 28px; }
+  @media (max-width: 900px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .cases { grid-template-columns: 1fr; } }
+  .case { padding: 18px 0; border-top: 1px solid var(--grid); }
+  .case b { display: block; font-weight: 800; font-size: 1.1rem; }
+  .case .tag { display: inline-block; font-size: .74rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #fff; border-radius: 4px; padding: 2px 7px 0; margin: 4px 0 6px; }
+  .case p { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+
+  /* open data */
+  #open-data { background: var(--surface); }
+  .zenodo { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; margin: 28px 0 40px; padding: 26px 28px; border-radius: 14px; background: var(--open-soft); border: 2px solid var(--open); }
+  @media (max-width: 760px) { .zenodo { grid-template-columns: 1fr; } }
+  .zenodo h3 { margin-bottom: 6px; }
+  .zenodo p { margin: 0; }
+  .zenodo code { font-size: .86rem; background: #fff; border-radius: 4px; padding: 1px 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; color: #fff; background: var(--open); border-radius: 999px; padding: 12px 22px 10px; white-space: nowrap; }
+  .btn:hover { color: #fff; background: #23705A; }
+  .table-wrap { overflow-x: auto; margin: 14px 0 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .9rem; }
+  th, td { text-align: left; vertical-align: top; padding: 11px 14px 9px 0; border-bottom: 1px solid var(--grid); }
+  th { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); font-weight: 800; border-bottom: 2px solid var(--ink); }
+  td b { font-weight: 800; }
+  .pill { display: inline-block; font-size: .75rem; font-weight: 800; border-radius: 999px; padding: 2px 10px 0; white-space: nowrap; }
+  .pill.open { background: var(--open-soft); color: var(--open); }
+  .pill.restricted { background: #F7E6E5; color: var(--safety); }
+  .pill.pending { background: #FBF0DC; color: #9A6510; }
+  .subhead { margin-top: 44px; }
+  .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; margin-top: 44px; }
+  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; gap: 28px; } }
+  .note { font-size: .9rem; color: var(--ink-soft); }
+  .plain-list { margin: 0; padding-left: 20px; }
+  .plain-list li { margin-bottom: 6px; }
+  .cite { background: var(--paper); border-left: 6px solid var(--ink); border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: .95rem; max-width: var(--measure); }
+  .cite p { margin: 0; }
+  .copy { font: inherit; font-size: .8rem; font-weight: 800; color: var(--ink); background: #fff; border: 1px solid var(--grid); border-radius: 999px; padding: 4px 12px 2px; margin-top: 10px; cursor: pointer; }
+
+  /* publications */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
+  .filters button { font: inherit; font-size: .84rem; font-weight: 700; color: var(--ink); background: var(--surface); border: 1px solid var(--grid); border-radius: 999px; padding: 6px 14px 4px; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pub-group { margin-top: 32px; }
+  .pub-group h3 { display: flex; align-items: baseline; gap: 10px; }
+  .pub-group h3 small { font-size: .9rem; font-weight: 600; color: var(--ink-soft); }
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pubs li { padding: 14px 0; border-top: 1px solid var(--grid); display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 2px 18px; }
+  .pubs li[data-kind="thesis"] { grid-template-columns: minmax(0, 1fr); }
+  @media (max-width: 640px) { .pubs li { grid-template-columns: 1fr; } }
+  .pub-line { grid-row: span 2; font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; padding-top: 3px; }
+  .pub-line.l-L { color: #9A6510; } .pub-line.l-N { color: var(--network); } .pub-line.l-S { color: var(--safety); } .pub-line.l-T { color: var(--ink-soft); }
+  .pub-title { font-weight: 800; }
+  .pub-title a { color: var(--ink); text-decoration-color: var(--grid); }
+  .pub-title a:hover { text-decoration-color: var(--network); color: var(--network); }
+  .pub-meta { font-size: .88rem; color: var(--ink-soft); }
+  .doi { white-space: nowrap; }
+  .pubs li[hidden] { display: none; }
+
+  /* team */
+  .team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; margin-top: 20px; }
+  @media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .person { padding: 16px 0; border-top: 1px solid var(--grid); }
+  .person b { display: block; font-weight: 800; }
+  .person span { font-size: .9rem; color: var(--ink-soft); }
+  .team-sub { margin: 36px 0 0; font-size: 1.05rem; font-weight: 800; }
+  .next { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; margin-top: 20px; }
+  @media (max-width: 860px) { .next { grid-template-columns: 1fr; } }
+
+  /* contact + footer */
+  .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+  address { font-style: normal; line-height: 1.7; }
+  address b { font-weight: 800; font-size: 1.15rem; }
+  footer { background: var(--ink); color: #E7ECEA; padding: 40px 0 48px; }
+  footer .wrap { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+  .funder-logo { background: #fff; border-radius: 8px; padding: 10px 14px; display: inline-flex; }
+  .funder-logo img { height: 64px; width: auto; max-width: 100%; display: block; }
+  footer p { margin: 0; font-size: .9rem; max-width: 62ch; }
+  footer a { color: #fff; }
+</style>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body>
+<a class="skip" href="#top">Skip to content</a>
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="micin-aei.jpg" alt="AI4Transport Logo" class="h-20 w-60 mr-2">
-					<p class="text-gray-800 text-sm"> Grant PID2022-140612OB-I00 <br> funded by MCIN/AEI/ 10.13039/501100011033 </p>
-                </div>
-                <div class="flex items-center">
-                    <a href="#about" class="text-gray-800 text-sm mx-2 hover:text-gray-600">About</a>
-                    <a href="#research" class="text-gray-800 text-sm mx-2 hover:text-gray-600">Research</a>
-                    <a href="#contact" class="text-gray-800 text-sm mx-2 hover:text-gray-600">Contact</a>
-                </div>
-            </div>
-        </div>
+<header class="topbar">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="RENAISSANCE home">
+      <img src="favicon.svg" alt="" width="36" height="36">
+      RENAISSANCE
+    </a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research lines</a>
+      <a href="#cases">Use cases</a>
+      <a href="#publications">Publications</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+      <a class="open-link" href="#open-data">Open data</a>
     </nav>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <header class="bg-cover bg-center h-96" style="background-image: url('background.jpg');">
-        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
-            <h1 class="title-font sm:text-6xl text-6xl mb-4 font-medium bg-white bg-opacity-50 p-2">RENAISSANCE</h1>
-            <p class="mb-8 leading-relaxed bg-white bg-opacity-60 p-2">REsearch on New Artificial Intelligence techniques to Improve Sustainability, SAfety and resilieNCE of mobility </p>
-        </div>
-    </header>
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="status">Project completed · 2023–2026</p>
+        <h1 class="acronym">RENAISSANCE</h1>
+        <p class="fulltitle"><b>RE</b>search on <b>N</b>ew <b>A</b>rtificial <b>I</b>ntelligence techniques to Improve <b>S</b>ustainability, <b>SA</b>fety and resilie<b>NCE</b> of mobility</p>
+        <p class="lede">We developed new Artificial Intelligence methods to make urban mobility and urban freight transport more efficient, sustainable, safe and resilient, and validated them with real data from European cities.</p>
+        <dl class="facts">
+          <dt>Grant</dt><dd>PID2022-140612OB-I00</dd>
+          <dt>Funded by</dt><dd>MICIU/AEI/10.13039/501100011033</dd>
+          <dt>Duration</dt><dd>1 September 2023 – 31 August 2026</dd>
+          <dt>Host</dt><dd>Deusto Institute of Technology, University of Deusto</dd>
+          <dt>Open data</dt><dd><a href="https://zenodo.org/communities/renaissance-pid2022-140612ob-i00">Zenodo community</a></dd>
+        </dl>
+        <img class="hero-funder" src="miciu-aei.jpg" alt="Ministerio de Ciencia, Innovación y Universidades and Agencia Estatal de Investigación">
+      </div>
 
-    <!-- About Section -->
-    <section id="about" class="text-gray-700 body-font">
-    <div class="container mx-auto px-12">
-        <h2 class="text-3xl font-bold text-center mb-6">About RENAISSANCE</h2>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-            Transport is a fundamental sector for the economy of both the European Union (EU) and Spain. At the EU level, it represents 9% of the total added value of the economy, 9% of total employment, and 17.2% of exports of services. However, transport also generates negative social effects (accidents, air pollution, etc.) whose external costs account for 4% of EU GDP. For this reason, the AI4Transport project proposes to carry out fundamental and experimental research in the area of Artificial Intelligence to tackle Challenge 4 of the current National Plan for Scientific and Technical Research and Innovation in "Sustainable, Intelligent, Connected, and Integrated Transport".
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-            This project focuses on two of the sectors in which the main transport problems in the EU are concentrated: urban mobility (congestion, impact on climate change, air pollution, and safety) and freight transport (low efficiency and response to the "on-demand" economy).
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-            The motivation of the AI4Transport project is based on the need to address these challenges and, to this end, it sets as a general objective the development of new Artificial Intelligence techniques to leverage the current high availability of transport data (from both conventional and non-conventional data sources) and the potential offered by emerging mobility solutions (electric vehicles, connected and autonomous vehicles, micro-mobility, etc.) to contribute to the solution of the main problems faced by urban mobility and freight transport.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700">
-            The principal investigator of this project participated in the research team of previous projects such as OptSIs, ASCETAS, ESPHIA from the National R&D&I Plan, and TIMON and PostLowCIT from the European Horizon2020 programme.
-        </p>
+      <figure class="map-card">
+        <svg id="netmap" viewBox="0 0 640 500" role="img" aria-labelledby="mapTitle mapDesc">
+          <title id="mapTitle">RENAISSANCE network map</title>
+          <desc id="mapDesc">Three research lines drawn as transit lines, each stopping at the cities where its methods were validated: last-mile logistics (Dublin, Zaragoza), transport network management (Athens, Manchester, The Hague, Madrid) and road safety (Madrid). All three meet at the software toolkit, which connects to the open data published on Zenodo.</desc>
+          <g aria-hidden="true">
+            <path d="M0 410 C 120 370, 200 440, 330 420 S 560 340, 640 370 L640 440 C 560 410, 440 480, 330 480 S 120 440, 0 470 Z" fill="var(--river)"/>
+            <g class="street">
+              <line x1="0" y1="40" x2="640" y2="40"/><line x1="0" y1="100" x2="640" y2="100"/><line x1="0" y1="160" x2="640" y2="160"/>
+              <line x1="0" y1="220" x2="640" y2="220"/><line x1="0" y1="280" x2="640" y2="280"/><line x1="0" y1="340" x2="640" y2="340"/>
+              <line x1="60" y1="0" x2="60" y2="500"/><line x1="140" y1="0" x2="140" y2="500"/><line x1="220" y1="0" x2="220" y2="500"/>
+              <line x1="300" y1="0" x2="300" y2="500"/><line x1="380" y1="0" x2="380" y2="500"/><line x1="460" y1="0" x2="460" y2="500"/>
+              <line x1="540" y1="0" x2="540" y2="500"/><line x1="620" y1="0" x2="620" y2="500"/>
+            </g>
+            <path class="avenue" d="M-10 260 L 640 30"/>
+          </g>
+
+          <!-- Logistics -->
+          <g class="line-group g-logistics">
+            <path class="route draw" pathLength="1" stroke="var(--logistics)" d="M50 80 H170 Q210 80 220 120 L250 230 Q262 272 300 280 L330 284"/>
+            <g class="fade">
+              <circle class="stop" stroke="var(--logistics)" cx="50" cy="80" r="9"/>
+              <circle class="stop" stroke="var(--logistics)" cx="170" cy="80" r="9"/>
+              <circle class="stop" stroke="var(--logistics)" cx="238" cy="186" r="9"/>
+              <text class="lbl" x="32" y="62">Dublin</text>
+              <text class="lbl" x="150" y="62">Zaragoza</text>
+              <text class="lbl" x="252" y="180">Last-mile solver</text>
+            </g>
+          </g>
+
+          <!-- Network management -->
+          <g class="line-group g-network">
+            <path class="route draw" pathLength="1" stroke="var(--network)" d="M600 60 H520 Q480 60 480 100 V250 Q480 296 430 300 L392 302"/>
+            <g class="fade">
+              <circle class="stop" stroke="var(--network)" cx="600" cy="60" r="9"/>
+              <circle class="stop" stroke="var(--network)" cx="480" cy="120" r="9"/>
+              <circle class="stop" stroke="var(--network)" cx="480" cy="185" r="9"/>
+              <circle class="stop" stroke="var(--network)" cx="480" cy="250" r="9"/>
+              <text class="lbl" x="556" y="42">Athens</text>
+              <text class="lbl" x="494" y="126">Manchester</text>
+              <text class="lbl" x="494" y="191">The Hague</text>
+              <text class="lbl" x="494" y="256">Madrid · DRT</text>
+            </g>
+          </g>
+
+          <!-- Road safety -->
+          <g class="line-group g-safety">
+            <path class="route draw" pathLength="1" stroke="var(--safety)" d="M50 440 H120 Q160 440 180 412 L222 350 Q242 322 290 318 L330 316"/>
+            <g class="fade">
+              <circle class="stop" stroke="var(--safety)" cx="50" cy="440" r="9"/>
+              <circle class="stop" stroke="var(--safety)" cx="200" cy="383" r="9"/>
+              <text class="lbl" x="28" y="422">Madrid crashes</text>
+              <text class="lbl" x="214" y="398">Graph + XAI models</text>
+            </g>
+          </g>
+
+          <!-- Open data branch -->
+          <g class="line-group g-open">
+            <path class="route data fade" stroke="var(--open)" d="M362 334 V420 H560"/>
+            <g class="fade">
+              <rect x="548" y="404" width="64" height="32" rx="16" fill="#fff" stroke="var(--open)" stroke-width="5"/>
+              <text class="lbl" x="580" y="460" text-anchor="middle">Zenodo</text>
+            </g>
+          </g>
+
+          <!-- Interchange -->
+          <g class="hub fade">
+            <rect x="326" y="270" width="72" height="56" rx="28" fill="#fff" stroke="var(--ink)" stroke-width="5"/>
+            <text class="lbl big" x="300" y="250">Software toolkit</text>
+          </g>
+        </svg>
+        <figcaption>
+          <ul class="legend" aria-label="Highlight a line on the map">
+            <li><button type="button" data-line="logistics" aria-pressed="false"><i style="background:var(--logistics)"></i>Last-mile logistics</button></li>
+            <li><button type="button" data-line="network" aria-pressed="false"><i style="background:var(--network)"></i>Network management</button></li>
+            <li><button type="button" data-line="safety" aria-pressed="false"><i style="background:var(--safety)"></i>Road safety</button></li>
+            <li><button type="button" data-line="open" aria-pressed="false"><i style="background:var(--open)"></i>Open data</button></li>
+          </ul>
+        </figcaption>
+      </figure>
     </div>
-    </section>
+  </div>
 
-    <!-- Research Section -->
-    <section id="research" class="text-gray-700 body-font bg-white">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-wrap -m-4">
-                <div class="p-4 lg:w-1/2 md:w-full">
-                    <h2 class="text-gray-900 text-4xl font-medium title-font mb-2">Research Areas</h2>
-                    <div class="h-full bg-gray-100 p-8 rounded">
-                       
-						<p class="text-lg leading-relaxed text-gray-700 mb-4">
-							To achieve the proposed objective, the research posed in AI4Transport focuses on the following areas, because of their impact on the aforementioned challenges of urban mobility and freight transport:
-						</p>
-						<ul class="list-disc pl-5 mb-4 text-lg text-gray-700">
-							<li>New traffic prediction methods that improve current systems by reducing the need for expert knowledge for the generation of prediction models and by extending their spatial and temporal scope. To this end, the aim is to develop new Automatic Machine Learning and Deep Learning techniques.</li>
-							<li>New tools for Travel Behaviour Analysis that contribute to a better understanding of how citizens use and will use emerging modes of mobility. For this purpose, the design of Machine Learning and Data Fusion techniques capable of handling multiple heterogeneous data sources simultaneously is proposed.</li>
-							<li>New models and optimization algorithms that contribute to a more collaborative and synchromodal logistics. More specifically, the aim is first to create richer versions of the Vehicle Routing Problem that consider collaboration between agents and that model the use and particularities of emerging mobility modes, and optimization methods based on hybrid metaheuristics capable of addressing the complexity of these models.</li>
-						</ul>
- 
-                    </div>
-                </div>
-				<div class="p-4 lg:w-1/2 md:w-full">
-					<div class="h-full overflow-hidden">
-						<img class="object-cover object-center w-full h-full" src="ResearchAreas.jpg">
-					</div>
-				</div>
-					
-				
-            </div>
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap">
+      <h2>What RENAISSANCE achieved</h2>
+      <p class="intro">Transport is central to the European and Spanish economy, but it also brings congestion, emissions and road crashes. RENAISSANCE set out to tackle these problems with new Artificial Intelligence techniques that exploit today's abundance of mobility data and the arrival of electric, shared and on-demand services.</p>
+      <p>Over 36 months the project met all its objectives and milestones. Its methods were integrated into a software toolkit and tested on real use cases in Dublin, Madrid, Manchester, Athens and other cities. The work has led to new European, national and regional projects and to a technology transfer contract with industry.</p>
+      <div class="numbers" role="list" aria-label="Project results in numbers">
+        <div role="listitem"><strong>16</strong><span>peer-reviewed journal articles, 14 in JCR journals</span></div>
+        <div role="listitem"><strong>6</strong><span>book chapters</span></div>
+        <div role="listitem"><strong>14</strong><span>international conference papers</span></div>
+        <div role="listitem"><strong>33</strong><span>publications in open access</span></div>
+        <div role="listitem"><strong>1 + 5</strong><span>PhD thesis defended, five more under way</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH LINES ================= -->
+  <section id="research">
+    <div class="wrap">
+      <h2>Three research lines, one toolkit</h2>
+      <p class="intro">Each line combined optimisation and machine learning, and was validated on data from real cities. The data work of work package 2 (more than 50 sources identified and harmonised) fed all three.</p>
+
+      <div class="lines">
+        <article class="line-card" style="--c: var(--logistics)">
+          <div>
+            <div class="line-name"><span class="bullet" style="background:var(--logistics)">A</span><small>Work package 3</small></div>
+            <h3>Collaborative and multimodal last-mile logistics</h3>
+            <p>More realistic vehicle routing models that include electric fleets, different transport modes and time windows, and new algorithms to solve them. The goal: fewer kilometres and emissions per delivery and more use of clean vehicles.</p>
+          </div>
+          <ol class="stops">
+            <li><b>Hyper-heuristics and reinforcement learning</b><span>Adaptive simulated annealing with reinforcement learning for the electric vehicle routing problem, and a reusable reinforcement learning environment for routing.</span></li>
+            <li><b>Ant colony and hybrid metaheuristics</b><span>A multi-strategy ant colony system for routing with time windows, and methods for dynamic location and warehouse layout problems.</span></li>
+            <li><b>An intelligent last-mile solver</b><span>Used to simulate urban logistics scenarios (consolidation centres, low-emission zones, pedestrian areas, micro-hubs) in Dublin and Zaragoza.</span></li>
+          </ol>
+        </article>
+
+        <article class="line-card" style="--c: var(--network)">
+          <div>
+            <div class="line-name"><span class="bullet" style="background:var(--network)">B</span><small>Work package 4</small></div>
+            <h3>Transport network management</h3>
+            <p>Optimisation methods to synchronise on-demand services with public transport, tune traffic signals and design dynamic congestion pricing, tested with the Aimsun Next and SUMO simulators.</p>
+          </div>
+          <ol class="stops">
+            <li><b>On-demand transport and freight on transit</b><span>Adaptive Large Neighbourhood Search to synchronise demand-responsive transport with transit, and simulation-based optimisation of parcels carried on autonomous on-demand services in peri-urban Madrid.</span></li>
+            <li><b>Signals, pricing, roadworks and superblocks</b><span>LLM-guided Bayesian optimisation of traffic signals, congestion pricing for Athens, roadworks scheduling, and the evaluation of superblocks.</span></li>
+            <li><b>Faster evaluation with surrogates</b><span>GSPINN, a physics-informed graph surrogate that predicts trip travel times in milliseconds, and a study of neural surrogates inside Differential Evolution.</span></li>
+          </ol>
+        </article>
+
+        <article class="line-card" style="--c: var(--safety)">
+          <div>
+            <div class="line-name"><span class="bullet" style="background:var(--safety)">C</span><small>Work package 5</small></div>
+            <h3>Road safety for vulnerable road users</h3>
+            <p>Crash prediction models based on graphs and deep learning that integrate new and heterogeneous data sources, and work on making those models explainable and trustworthy for road authorities.</p>
+          </div>
+          <ol class="stops">
+            <li><b>Graph data models of the road network</b><span>A labelled graph framework that brings together crash records, traffic density and connected vehicle data to find accident hotspots in Madrid.</span></li>
+            <li><b>Explainable predictions</b><span>GraphLIME and a study of how preprocessing, hyperparameter tuning and algorithm choice change what crash models explain.</span></li>
+            <li><b>Better calibrated AutoML</b><span>The role of ensemble diversity in the accuracy and calibration of AutoML, as a basis for more robust risk prediction.</span></li>
+          </ol>
+        </article>
+      </div>
+
+      <div class="interchange">
+        <svg width="56" height="42" viewBox="0 0 56 42" aria-hidden="true"><rect x="3" y="3" width="50" height="36" rx="18" fill="#fff" stroke="#1B2A33" stroke-width="5"/></svg>
+        <p><b>Software toolkit.</b> The three lines meet in a modular toolkit (work package 6) with modules for logistics optimisation, network optimisation and crash analysis. It was tested and validated on the use cases below.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= USE CASES ================= -->
+  <section id="cases">
+    <div class="wrap">
+      <h2>Use cases</h2>
+      <p class="intro">The methods were validated with real data, provided by public open-data portals and by partners under confidentiality agreements.</p>
+      <div class="cases">
+        <div class="case"><b>Dublin</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Parcel deliveries of a postal operator in the city centre: consolidation, low-emission zones, pedestrian areas and micro-hubs, across four demand levels.</p></div>
+        <div class="case"><b>Zaragoza</b><span class="tag" style="background:var(--logistics)">Logistics</span><p>Postal deliveries in the historic centre with a zero-emission zone, an urban consolidation centre and different levels of fleet electrification.</p></div>
+        <div class="case"><b>Madrid · El Álamo</b><span class="tag" style="background:var(--network)">Network</span><p>Demand-responsive transport integrated with public transport, and parcels carried on autonomous on-demand services in a peri-urban area.</p></div>
+        <div class="case"><b>Athens</b><span class="tag" style="background:var(--network)">Network</span><p>Dynamic congestion pricing strategies evaluated on a mesoscopic Aimsun Next model of the city.</p></div>
+        <div class="case"><b>Manchester</b><span class="tag" style="background:var(--network)">Network</span><p>Optimisation of traffic signal plans on a mesoscopic Aimsun Next model of the metropolitan network.</p></div>
+        <div class="case"><b>The Hague</b><span class="tag" style="background:var(--network)">Network</span><p>Scheduling of roadworks in a multimodal network to reduce congestion and emissions.</p></div>
+        <div class="case"><b>Madrid</b><span class="tag" style="background:var(--safety)">Road safety</span><p>Accident hotspot prediction for vulnerable road users from open crash records, road network, traffic demand and connected vehicle events.</p></div>
+        <div class="case"><b>Fort Worth</b><span class="tag" style="background:var(--network)">Network</span><p>Optimal location of superblocks with agent-based and microscopic traffic simulation.</p></div>
+        <div class="case"><b>Benchmarks</b><span class="tag" style="background:var(--ink-soft)">Methods</span><p>Public benchmarks for routing, AutoML, image segmentation and traffic simulation, so that results can be reproduced and compared.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPEN DATA ================= -->
+  <section id="open-data">
+    <div class="wrap">
+      <h2>Open science and data</h2>
+      <p class="intro">RENAISSANCE publishes its results in open access and manages its research data following the FAIR principles and its Data Management Plan. Data are as open as possible and as closed as necessary: what comes from confidential sources stays protected.</p>
+
+      <div class="zenodo">
+        <div>
+          <h3>All open outputs are in one place: the RENAISSANCE community on Zenodo</h3>
+          <p>Publications and open datasets are deposited in Zenodo, linked to grant PID2022-140612OB-I00 of the Spanish State Research Agency. Every record has its own DOI, version history and licence. Community: <code>renaissance-pid2022-140612ob-i00</code></p>
         </div>
-    </section>
+        <a class="btn" href="https://zenodo.org/communities/renaissance-pid2022-140612ob-i00">Open on Zenodo →</a>
+      </div>
 
-    <!-- Contact Section -->
-	<section id="contact" class="text-gray-700 body-font bg-gray-200">
-		<div class="container px-5 py-24 mx-auto">
-			<h2 class="text-gray-900 text-4xl font-medium title-font mb-5">Contact</h2>
-			<div class="flex flex-wrap">
-				<!-- Image Container -->
-				<div class="lg:w-1/3 md:w-2/3 w-full">
-					<img src="Contact.jpg" class="rounded-lg shadow-lg">
-				</div>
-				<div class="lg:w-1/3 md:w-2/3 bg-white rounded-lg p-8">
-					<h3 class="text-2xl font-semibold mb-4">Antonio D. Masegosa</h3>	
-					<p class="text-lg text-gray-700">Deusto Institute of Technology</p>
-					<p class="text-lg text-gray-700">University of Deusto</p>
-					<p class="text-lg text-gray-700">Avenida de las Universidades 24,</p>
-					<p class="text-lg text-gray-700">48007 Bilbao, Spain</p>
-					<p class="text-lg text-gray-700 mb-4">Email: <a href="mailto:ad.masegosa@deusto.es" class="text-blue-500 hover:text-blue-700">ad.masegosa@deusto.es</a></p>
-				</div>
-			</div>
-		</div>
-	</section>
+      <h3>What is available and how to access it</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Output</th><th scope="col">Where</th><th scope="col">Access</th><th scope="col">Licence</th></tr></thead>
+          <tbody>
+            <tr><td><b>Publications</b><br>Accepted versions of the project's articles, chapters and papers</td><td>Publisher's site and Zenodo community</td><td><span class="pill open">Open</span><br>From the date of publication</td><td>Publisher's licence, mostly CC BY</td></tr>
+            <tr><td><b>Open datasets</b><br>Datasets generated from public sources, such as the multi-state SUMO datasets for travel time prediction and the results on public benchmarks</td><td>Zenodo community</td><td><span class="pill pending">Being deposited</span><br>By 31 August 2028 at the latest</td><td>CC BY 4.0</td></tr>
+            <tr><td><b>Third-party data</b><br>Data provided by companies and administrations under confidentiality agreements</td><td>Not deposited</td><td><span class="pill restricted">Restricted</span><br>Request it from the original provider</td><td>Provider's terms</td></tr>
+            <tr><td><b>Data derived from third-party data</b><br>Simulation results, trained models and labelled graphs built on confidential data</td><td>Not deposited</td><td><span class="pill restricted">Restricted</span><br>Aggregated results are in the publications</td><td>Provider's terms</td></tr>
+            <tr><td><b>Software toolkit</b><br>Code of the RENAISSANCE toolkit and experiments</td><td>Private repository</td><td><span class="pill restricted">Restricted</span><br>Exploitation under study; release decision by 31 August 2028</td><td>To be decided</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Footer -->
-    <footer class="text-gray-600 body-font">
-        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-            <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">Disclaimer: All images are generated by AI
-            </p>
+      <h3 class="subhead">Data sources used in the project</h3>
+      <p class="note">Public sources are linked so that anyone can obtain the same data. Confidential sources are described without naming the provider, as the agreements require.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Data</th><th scope="col">Source</th><th scope="col">Used in</th><th scope="col">Access</th></tr></thead>
+          <tbody>
+            <tr><td>Traffic accidents in Madrid since 2010</td><td><a href="https://datos.madrid.es">Madrid City Council open data portal</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Road networks</td><td><a href="https://www.openstreetmap.org">OpenStreetMap</a> (ODbL)</td><td>All lines</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Public transport timetables (GTFS) for Madrid</td><td><a href="https://www.crtm.es/licencia-de-uso/">Consorcio Regional de Transportes de Madrid</a></td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Planned roadworks in the Netherlands</td><td><a href="https://english.ndw.nu/products-and-services/melvin">MELVIN (NDW)</a></td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Traffic simulation scenarios of Ingolstadt and Cologne, Monaco and Luxembourg</td><td><a href="https://github.com/Pi-Star-Lab/RESCO">RESCO</a>, <a href="https://github.com/lcodeca/MoSTScenario">MoST</a> and <a href="https://github.com/lcodeca/LuSTScenario">LuST</a> for SUMO</td><td>Network management</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Electric vehicle routing instances</td><td><a href="https://mavrovouniotis.github.io/EVRPcompetition2020">CEVRP benchmark (WCCI 2020)</a></td><td>Logistics</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Classification datasets for AutoML</td><td><a href="https://openml.github.io/automlbenchmark/">AutoML Benchmark (OpenML)</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Images and traffic camera video for vehicle segmentation</td><td><a href="https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/">BSDS500</a> and a <a href="https://www.kaggle.com/foyecey/traffic-road">traffic camera video on Kaggle</a></td><td>Road safety</td><td><span class="pill open">Open</span></td></tr>
+            <tr><td>Parcel delivery records, fleets and depots (Dublin, Zaragoza)</td><td>Postal operators</td><td>Logistics</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Public transport occupancy and origin–destination matrices from mobile network data (Madrid)</td><td>Nommon</td><td>Network management, road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Last-mile logistics data (Madrid)</td><td>Logistics operator</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Traffic simulation models (Athens, Manchester) and regional traffic model with floating car data (The Hague)</td><td>Research partner, transport authorities and a data provider</td><td>Network management</td><td><span class="pill restricted">Confidential</span></td></tr>
+            <tr><td>Anonymised harsh-manoeuvre events from connected vehicles (Madrid)</td><td>Connected vehicle data provider</td><td>Road safety</td><td><span class="pill restricted">Confidential</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>Data Management Plan</h3>
+          <ul class="plain-list">
+            <li><b>Responsible for the plan and data access:</b> Antonio D. Masegosa (principal investigator).</li>
+            <li><b>Data steward:</b> Asier Moreno Emborujo (lead of data collection and harmonisation).</li>
+            <li><b>Formats:</b> open formats such as CSV, JSON, GeoJSON, GTFS and SUMO XML, with a README describing variables and units.</li>
+            <li><b>Personal data:</b> none. Confidential data arrived anonymised or aggregated.</li>
+            <li><b>Preservation:</b> open outputs are kept indefinitely on Zenodo. Third-party data are deleted as their agreements require.</li>
+          </ul>
+          <p class="note">Questions about the data or requests to reuse them: write to <a href="mailto:ad.masegosa@deusto.es">ad.masegosa@deusto.es</a>.</p>
         </div>
-    </footer>
+        <div>
+          <h3>How to acknowledge RENAISSANCE</h3>
+          <p>If you reuse data or results from the project, please cite the corresponding Zenodo record or publication and include this acknowledgement:</p>
+          <div class="cite">
+            <p id="ack">This work is part of the project RENAISSANCE (PID2022-140612OB-I00), funded by MICIU/AEI/10.13039/501100011033.</p>
+            <button type="button" class="copy" data-copy="ack">Copy text</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
+    <div class="wrap">
+      <h2>Publications</h2>
+      <p class="intro">All project publications are available in open access. Titles link to the DOI. Filter by research line:</p>
+      <div class="filters" role="group" aria-label="Filter publications by research line">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="L" aria-pressed="false">Logistics</button>
+        <button type="button" data-filter="N" aria-pressed="false">Network management</button>
+        <button type="button" data-filter="S" aria-pressed="false">Road safety</button>
+        <button type="button" data-filter="T" aria-pressed="false">Methods &amp; platform</button>
+      </div>
+
+      <div class="pub-group">
+        <h3>Journal articles <small>16</small></h3>
+        <ol class="pubs">
+<li data-line="L" data-kind="journal"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1186/s12544-026-00782-9">Intelligent vehicle routing problem solver for simulating urban last-mile logistics</a></span><span class="pub-meta">Fajardo-Calderín, J., Masegosa, A. D., Cantero, X., Moreno, A., &amp; Elejoste, P. (2026). <i>European Transport Research Review, 18(1), 22</i>. <span class="doi">doi:10.1186/s12544-026-00782-9</span></span></li>
+<li data-line="N" data-kind="journal"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.26599/COMMTR.2026.9640044">GSPINN: Graph sequential physics-informed surrogate for trip travel time prediction</a></span><span class="pub-meta">Afolayan, B. I., Ghosh, A., Narayanan, S., Antoniou, C., Masegosa, A. D., &amp; Fajardo-Calderín, J. (2026). <i>Communications in Transportation Research, 6(3), 9640044</i>. <span class="doi">doi:10.26599/COMMTR.2026.9640044</span></span></li>
+<li data-line="S" data-kind="journal"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1016/j.rineng.2026.113902">A labelled graph framework for the integration of emerging data sources in proactive road safety analysis for vulnerable road users</a></span><span class="pub-meta">Díaz-Aparicio, J., Fajardo-Calderín, J., Duflo, G., Masegosa, A. D., Onieva, E., &amp; Pohle, M. (2026). <i>Results in Engineering, 113902</i>. <span class="doi">doi:10.1016/j.rineng.2026.113902</span></span></li>
+<li data-line="S" data-kind="journal"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1016/j.array.2026.100743">Studying the impact of data preprocessing, hyperparameter tuning and machine learning algorithms in crash prediction explainability</a></span><span class="pub-meta">Díaz-Aparicio, J., Rodríguez-Esparza, E., Fajardo-Calderín, J., &amp; Onieva, E. (2026). <i>Array, 100743</i>. <span class="doi">doi:10.1016/j.array.2026.100743</span></span></li>
+<li data-line="L" data-kind="journal"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1007/s00521-026-12418-z">A novel ant colony system for vehicle routing problem with time windows: Leveraging multiple heuristic strategies for improved solutions</a></span><span class="pub-meta">Kuyu, Y. Ç., Fajardo-Calderín, J., &amp; Onieva, E. (2026). <i>Neural Computing and Applications, 38(17), 705</i>. <span class="doi">doi:10.1007/s00521-026-12418-z</span></span></li>
+<li data-line="T" data-kind="journal"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1016/j.bspc.2025.109153">Visual enhancement of chest X-ray scans through metaheuristic-based optimization of Gamma correction and CLAHE</a></span><span class="pub-meta">Ramos-Soto, O., Ramos-Frutos, J., Rodríguez-Esparza, E., Oliva, D., Pérez-Zárate, E., Carrasco-Hernández, F., &amp; Balderas-Mata, S. E. (2026). <i>Biomedical Signal Processing and Control, 113, 109153</i>. <span class="doi">doi:10.1016/j.bspc.2025.109153</span></span></li>
+<li data-line="S" data-kind="journal"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2025.3554093">Understanding the role of diversity in ensemble-based AutoML methods for classification tasks</a></span><span class="pub-meta">Osei, S., Masegosa, A. R., &amp; Masegosa, A. D. (2025). <i>IEEE Access, 13, 63566–63586</i>. <span class="doi">doi:10.1109/ACCESS.2025.3554093</span></span></li>
+<li data-line="T" data-kind="journal"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1016/j.array.2025.100488">Adaptive high frequency data streaming for soft real-time industrial AI: A scalable microservices based architecture with dynamic downsampling</a></span><span class="pub-meta">De Barrena, T. F., Fernandes, A., Ferrando, J. L., García, A., Landaluce, H., &amp; Angulo, I. (2025). <i>Array, 27, 100488</i>. <span class="doi">doi:10.1016/j.array.2025.100488</span></span></li>
+<li data-line="N" data-kind="journal"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1061/JUPDDM.UPENG-5354">Effects of superblocks on travel demand: A cost–benefit and system dynamics analysis</a></span><span class="pub-meta">Majoral, G., Sarwar, S., &amp; Saurí, S. (2025). <i>Journal of Urban Planning and Development, 151(2), 04025005</i>. <span class="doi">doi:10.1061/JUPDDM.UPENG-5354</span></span></li>
+<li data-line="T" data-kind="journal"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2024.3501775">Emerging trends in machine learning assisted optimization techniques across intelligent transportation systems</a></span><span class="pub-meta">Afolayan, B. I., Ghosh, A., Fajardo-Calderín, J., &amp; Masegosa, A. D. (2024). <i>IEEE Access, 12, 173981–174005</i>. <span class="doi">doi:10.1109/ACCESS.2024.3501775</span></span></li>
+<li data-line="S" data-kind="journal"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1109/ACCESS.2024.3369039">Optimizing road traffic surveillance: A robust hyper-heuristic approach for vehicle segmentation</a></span><span class="pub-meta">Rodríguez-Esparza, E., Ramos-Soto, O., Masegosa, A. D., Onieva, E., Oliva, D., Arriandiaga, A., &amp; Ghosh, A. (2024). <i>IEEE Access, 12, 29503–29524</i>. <span class="doi">doi:10.1109/ACCESS.2024.3369039</span></span></li>
+<li data-line="L" data-kind="journal"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1016/j.eswa.2024.124197">A new hyper-heuristic based on adaptive simulated annealing and reinforcement learning for the capacitated electric vehicle routing problem</a></span><span class="pub-meta">Rodríguez-Esparza, E., Masegosa, A. D., Oliva, D., &amp; Onieva, E. (2024). <i>Expert Systems with Applications, 252, 124197</i>. <span class="doi">doi:10.1016/j.eswa.2024.124197</span></span></li>
+<li data-line="T" data-kind="journal"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1016/j.knosys.2024.111784">Handling the balance of operators in evolutionary algorithms through a weighted Hill Climbing approach</a></span><span class="pub-meta">Rodríguez-Esparza, E., Morales-Castañeda, B., Casas-Ordaz, A., Oliva, D., Navarro, M. A., Valdivia, A., &amp; Houssein, E. H. (2024). <i>Knowledge-Based Systems, 294, 111784</i>. <span class="doi">doi:10.1016/j.knosys.2024.111784</span></span></li>
+<li data-line="L" data-kind="journal"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1093/jigpal/jzae018">A variable neighbourhood search for minimization of operation times through warehouse layout optimization</a></span><span class="pub-meta">Díaz, J., Rodríguez, H., Fajardo-Calderín, J., Angulo, I., &amp; Onieva, E. (2024). <i>Logic Journal of the IGPL, 32(4), 688–699</i>. <span class="doi">doi:10.1093/jigpal/jzae018</span></span></li>
+<li data-line="T" data-kind="journal"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1016/j.procs.2024.09.579">Adaptability and efficiency in population management: A multi-population CMA-ES strategy for high-dimensional optimization</a></span><span class="pub-meta">Morales-Castañeda, B., Rodríguez-Esparza, E., Oliva, D., Navarro, M. A., Aranguren, I., Casas-Ordaz, A., Beltrán, L. A., &amp; Zapotecas-Martínez, S. (2024). <i>Procedia Computer Science, 246, 1389–1398</i>. <span class="doi">doi:10.1016/j.procs.2024.09.579</span></span></li>
+<li data-line="L" data-kind="journal"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title">Inclusión de parámetros variables en el tiempo en problemas de localización y orientación</span><span class="pub-meta">Porras Nodarse, C., Fajardo Calderín, J., Rosete Suárez, A., Pelta, D. A., Verdegay, J. L., Masegosa, A. D., et al. (2023). <i>Anales de la Academia de Ciencias de Cuba, 13(4)</i>.</span></li>
+        </ol>
+      </div>
+      <div class="pub-group">
+        <h3>Book chapters <small>6</small></h3>
+        <ol class="pubs">
+<li data-line="S" data-kind="chapter"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-032-37170-6_72">Enhancing urban road safety: Integrating traffic density, connected vehicle data, and crash analysis</a></span><span class="pub-meta">Díaz-Aparicio, J., Duflo, G., Moreno, A., Masegosa, A. D., Pohle, M., Hilse, V. S., Bueno-González, J., &amp; Cantú-Ros, O. G. (2026). <i>Re-Generation in Transport (TRA 2026), Lecture Notes in Mobility, 609–616. Springer</i>. <span class="doi">doi:10.1007/978-3-032-37170-6_72</span></span></li>
+<li data-line="N" data-kind="chapter"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-032-08462-0_21">Clustering-based route optimization for mixed ride-sharing under time constraints</a></span><span class="pub-meta">Ccesa-Quincho, M., Fajardo-Calderín, J., Cantero, X., Masegosa, A. D., &amp; Serrano, L. (2025). <i>HAIS 2025, Lecture Notes in Computer Science 16203, 265–276. Springer</i>. <span class="doi">doi:10.1007/978-3-032-08462-0_21</span></span></li>
+<li data-line="L" data-kind="chapter"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-032-08462-0_24">Action space size effects in reinforcement learning for the vehicle routing problem</a></span><span class="pub-meta">Díaz-Aparicio, J., Duflo, G., Fajardo-Calderín, J., &amp; Onieva, E. (2025). <i>HAIS 2025, Lecture Notes in Computer Science 16203, 301–312. Springer</i>. <span class="doi">doi:10.1007/978-3-032-08462-0_24</span></span></li>
+<li data-line="S" data-kind="chapter"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-031-99958-1_28">Towards well-calibrated AutoML: A theoretical analysis based on ensemble diversity</a></span><span class="pub-meta">Osei, S., Masegosa, A. R., &amp; Masegosa, A. D. (2025). <i>IntelliSys 2025, Lecture Notes in Networks and Systems 1553, 418–447. Springer</i>. <span class="doi">doi:10.1007/978-3-031-99958-1_28</span></span></li>
+<li data-line="S" data-kind="chapter"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-031-74186-9_4">A graph data model creation methodology for accident hotspot prediction in urban areas</a></span><span class="pub-meta">Díaz, J., Duflo, G., Fajardo, J., Onieva, E., &amp; Masegosa, A. D. (2024). <i>HAIS 2024, Lecture Notes in Artificial Intelligence 14858, 39–49. Springer</i>. <span class="doi">doi:10.1007/978-3-031-74186-9_4</span></span></li>
+<li data-line="S" data-kind="chapter"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-031-48590-9_10">Evaluation of the Jetson Nano on the analysis of risk patterns in multimodal traffic intersections</a></span><span class="pub-meta">Gómez, J., Landaluce, H., &amp; Angulo, I. (2023). <i>UCAmI 2023, Lecture Notes in Networks and Systems 841, 102–113. Springer</i>. <span class="doi">doi:10.1007/978-3-031-48590-9_10</span></span></li>
+        </ol>
+      </div>
+      <div class="pub-group">
+        <h3>International conference papers <small>14</small></h3>
+        <ol class="pubs">
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1109/CEC69861.2026.11727399">Stability and limitations of deep neural network surrogates in Differential Evolution</a></span><span class="pub-meta">Ghosh, A., &amp; Masegosa, A. D. (2026). <i>IEEE Congress on Evolutionary Computation (CEC 2026), Maastricht</i>. <span class="doi">doi:10.1109/CEC69861.2026.11727399</span></span></li>
+<li data-line="S" data-kind="conference"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title">An empirical study of ensemble diversity in AutoML for regression</span><span class="pub-meta">Osei, S., Masegosa, A. R., &amp; Masegosa, A. D. (2026). <i>VI International Conference on Optimization, Learning Algorithms and Applications (OL2A 2026), Málaga</i>.</span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1007/978-3-032-36101-1_80">Simulation-based optimization of roadworks scheduling in multimodal networks under realistic constraints</a></span><span class="pub-meta">Rodríguez-Esparza, E., Masegosa, A. D., Sarwar, S., &amp; Pellicer-Pous, A. (2026). <i>Transport Research Arena (TRA 2026), Budapest</i>. <span class="doi">doi:10.1007/978-3-032-36101-1_80</span></span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title">Evaluation of superblock configuration in an urban network with the integration of agent-based and traffic simulation models: A case study of the City of Fort Worth, Texas</span><span class="pub-meta">Sarwar, S., Ghosh, A., Butt, F., Afolayan, B. I., &amp; Masegosa, A. D. (2026). <i>Transport Research Arena (TRA 2026), Budapest</i>.</span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title">A simulation-based optimisation approach for freight-on-transit using integration of autonomous DRT and public transport in peri-urban areas: A case study of Madrid city</span><span class="pub-meta">Sarwar, S., Masegosa, A. D., Rodríguez-Esparza, E., Fajardo Calderín, J., Ccesa Quincho, M., García-Cantú, O., et al. (2026). <i>105th Annual Meeting of the Transportation Research Board (TRB 2026), Washington D.C.</i>.</span></li>
+<li data-line="T" data-kind="conference"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1063/5.0309148">Real-time anomaly detection for industrial conveyors using multi-task deep learning and TinyML</a></span><span class="pub-meta">Fernandes, A., Landaluce, H., &amp; Angulo, I. (2026). <i>ICIEA-EU 2025, AIP Conference Proceedings 3381</i>. <span class="doi">doi:10.1063/5.0309148</span></span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1109/ITSC60802.2025.11423448">Optimization of traffic signals using Bayesian optimization in a multi-step prompt engineering method</a></span><span class="pub-meta">Afolayan, B. I., Ghosh, A., Sarwar, S., Masegosa, A. D., &amp; Fajardo-Calderín, J. (2025). <i>IEEE 28th International Conference on Intelligent Transportation Systems (ITSC 2025), Gold Coast</i>. <span class="doi">doi:10.1109/ITSC60802.2025.11423448</span></span></li>
+<li data-line="S" data-kind="conference"><span class="pub-line l-S" title="Road safety">Road safety</span><span class="pub-title">Novel data sources with deep learning to predict accident hotspots</span><span class="pub-meta">Duflo, G., Díaz, J., Moreno Emborujo, A., &amp; Masegosa, A. D. (2025). <i>53rd European Transport Conference (ETC 2025), Antwerp</i>.</span></li>
+<li data-line="T" data-kind="conference"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1109/CEC65147.2025.11043022">Addressing limitations and inaccuracy of diversity metrics in evolutionary algorithms with an accurate dimension-wise diversity</a></span><span class="pub-meta">Rodríguez-Esparza, E., Morales-Castañeda, B., Aranguren, I., Valdivia, A., Navarro, M. A., &amp; Oliva, D. (2025). <i>IEEE Congress on Evolutionary Computation (CEC 2025), Hangzhou</i>. <span class="doi">doi:10.1109/CEC65147.2025.11043022</span></span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1061/9780784486207.057">Optimization of dynamic congestion pricing strategy: A case study of Athens city</a></span><span class="pub-meta">Ghosh, A., Sarwar, S., Masegosa, A. D., Giouroukelis, M., Chalkiadakis, C., Mantouka, E., Vlahogianni, E., &amp; Tympakianaki, A. (2025). <i>International Conference on Transportation and Development (ICTD 2025), ASCE, 661–673</i>. <span class="doi">doi:10.1061/9780784486207.057</span></span></li>
+<li data-line="N" data-kind="conference"><span class="pub-line l-N" title="Network management">Network management</span><span class="pub-title"><a href="https://doi.org/10.1061/9780784486191.067">Demand-responsive transport and transit synchronization using Adaptive Large Neighborhood Search</a></span><span class="pub-meta">Masegosa, A. D., Ghosh, A., Sarwar, S., Fajardo Calderín, J., Salaberria Larrauri, I., Giouroukelis, M., Chalkiadakis, C., Mantouka, E., &amp; Vlahogianni, E. (2025). <i>International Conference on Transportation and Development (ICTD 2025), ASCE, 762–775</i>. <span class="doi">doi:10.1061/9780784486191.067</span></span></li>
+<li data-line="T" data-kind="conference"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1109/CEC60901.2024.10611821">IDEL: An improved Differential Evolution with Lissajous mutation</a></span><span class="pub-meta">Casas-Ordaz, A., Valdivia, A., Haro, E. H., Oliva, D., Beltrán, L. A., Aranguren, I., Rodríguez-Esparza, E., &amp; Campos-Peña, D. (2024). <i>IEEE Congress on Evolutionary Computation (CEC 2024), Yokohama</i>. <span class="doi">doi:10.1109/CEC60901.2024.10611821</span></span></li>
+<li data-line="L" data-kind="conference"><span class="pub-line l-L" title="Logistics">Logistics</span><span class="pub-title"><a href="https://doi.org/10.1145/3674558.3674576">A flexible vehicle routing reinforcement learning environment for the reusability of trained agents</a></span><span class="pub-meta">Díaz, J., Fajardo, J., Rodríguez-Esparza, E., &amp; Onieva, E. (2024). <i>10th International Conference on Computer Technology Applications (ICCTA 2024), Vienna</i>. <span class="doi">doi:10.1145/3674558.3674576</span></span></li>
+<li data-line="T" data-kind="conference"><span class="pub-line l-T" title="Methods & platform">Methods & platform</span><span class="pub-title"><a href="https://doi.org/10.1109/SSCI52147.2023.10371862">Improving metaheuristic algorithm design through inequality and diversity analysis: A novel multi-population Differential Evolution</a></span><span class="pub-meta">Ramos-Michel, A., Navarro, M. A., Oliva, D., Morales-Castañeda, B., Casas-Ordaz, A., Valdivia, A., Rodríguez-Esparza, E., &amp; Mousavirad, S. J. (2023). <i>IEEE Symposium Series on Computational Intelligence (SSCI 2023), Mexico City</i>. <span class="doi">doi:10.1109/SSCI52147.2023.10371862</span></span></li>
+        </ol>
+      </div>
+      <div class="pub-group">
+        <h3>PhD theses <small>6</small></h3>
+        <ol class="pubs">
+<li data-kind="thesis"><span class="pub-title">Novel optimisation methods and models for improving sustainability and efficiency in last-mile logistics</span><span class="pub-meta">Erick Rodríguez-Esparza, University of Deusto. Defended 13 September 2024 · Cum laude.</span></li>
+<li data-kind="thesis"><span class="pub-title">Fostering data-driven decision making in transportation through automatic machine learning</span><span class="pub-meta">Salomey Osei, University of Deusto. Submitted · defence expected February 2027.</span></li>
+<li data-kind="thesis"><span class="pub-title">Reinforcement learning methodologies for transport logistics optimization</span><span class="pub-meta">Jon Díaz Aparicio, University of Deusto. In progress · expected January 2027.</span></li>
+<li data-kind="thesis"><span class="pub-title">Optimization of AI algorithms within embedded systems for industrial efficiency</span><span class="pub-meta">Alcides De Araújo Fernandes, University of Deusto. In progress · expected March 2027.</span></li>
+<li data-kind="thesis"><span class="pub-title">Generative AI and machine learning tools for enhancing black box model optimization</span><span class="pub-meta">Blessing Itoro Afolayan, University of Deusto. In progress, international mention · expected May 2027.</span></li>
+<li data-kind="thesis"><span class="pub-title">New machine learning models to improve the scalability of optimisation and simulation methods for last-mile logistics</span><span class="pub-meta">Mercedes Ccesa Quincho, University of Deusto. In progress · expected December 2029.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TEAM ================= -->
+  <section id="team">
+    <div class="wrap">
+      <h2>Team</h2>
+      <p class="intro">RENAISSANCE was carried out by the Deusto Smart Mobility group at the Deusto Institute of Technology. Fourteen people took part over the three years.</p>
+
+      <p class="team-sub">Research team</p>
+      <div class="team-grid">
+        <div class="person"><b>Antonio D. Masegosa</b><span>Principal investigator · Ikerbasque Research Associate Professor</span></div>
+        <div class="person"><b>Jenny Fajardo Calderín</b><span>Lead of transport network optimisation</span></div>
+        <div class="person"><b>Hugo Landaluce Simón</b><span>Lead of dissemination and exploitation</span></div>
+        <div class="person"><b>Asier Moreno Emborujo</b><span>Lead of data and software toolkit</span></div>
+      </div>
+
+      <p class="team-sub">Work team</p>
+      <div class="team-grid">
+        <div class="person"><b>Arka Ghosh</b><span>Postdoctoral researcher</span></div>
+        <div class="person"><b>Erick Rodríguez-Esparza</b><span>Pre-doctoral, then postdoctoral researcher</span></div>
+        <div class="person"><b>Gabriel Duflo</b><span>Postdoctoral researcher</span></div>
+        <div class="person"><b>Samra Sarwar</b><span>Postdoctoral researcher (2024–2026)</span></div>
+        <div class="person"><b>Ander Arriandiaga Laresgoiti</b><span>Postdoctoral researcher (2023–2024)</span></div>
+        <div class="person"><b>Salomey Osei</b><span>Pre-doctoral researcher (2023–2025)</span></div>
+        <div class="person"><b>Blessing Itoro Afolayan</b><span>Pre-doctoral researcher</span></div>
+        <div class="person"><b>Jon Díaz Aparicio</b><span>Pre-doctoral researcher</span></div>
+        <div class="person"><b>Mercedes Ccesa Quincho</b><span>Pre-doctoral researcher</span></div>
+        <div class="person"><b>Alcides De Araújo Fernandes</b><span>Pre-doctoral researcher</span></div>
+      </div>
+
+      <p class="team-sub">What came next</p>
+      <div class="next">
+        <div class="person"><b><a href="https://admasegosa.github.io/Intrinsic/">INTRINSIC</a></b><span>Follow-up project (PID2025-168565OB-I00, 2026–2029) on drones, agentic AI and real-time crash risk.</span></div>
+        <div class="person"><b>AcceptRemote</b><span>Horizon Europe project (2026–2029) on the acceptance of remote operations for future mobility.</span></div>
+        <div class="person"><b>InCharge and IZAR</b><span>A CDTI contract with Nommon on electric vehicle charging networks, and an Elkartek project that brings these methods to industry.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Contact</h2>
+        <p>For questions about the project, its data or its results, write to the principal investigator.</p>
+      </div>
+      <address>
+        <b>Antonio D. Masegosa</b><br>
+        Deusto Institute of Technology (DeustoTech)<br>
+        University of Deusto<br>
+        Avenida de las Universidades 24, 48007 Bilbao, Spain<br>
+        <a href="mailto:ad.masegosa@deusto.es">ad.masegosa@deusto.es</a>
+      </address>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="funder-logo"><img src="miciu-aei.jpg" alt="Ministerio de Ciencia, Innovación y Universidades and Agencia Estatal de Investigación"></span>
+    <p>Grant PID2022-140612OB-I00 funded by MICIU/AEI/10.13039/501100011033.<br>
+    Project of the <a href="https://deustotech.deusto.es/">Deusto Institute of Technology</a>, University of Deusto. Open outputs: <a href="https://zenodo.org/communities/renaissance-pid2022-140612ob-i00">Zenodo community</a>.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var svg = document.getElementById('netmap');
+    var buttons = document.querySelectorAll('.legend button');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var line = btn.dataset.line;
+        var on = btn.getAttribute('aria-pressed') !== 'true';
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        svg.classList.remove('focus-logistics', 'focus-network', 'focus-safety', 'focus-open');
+        if (on) { btn.setAttribute('aria-pressed', 'true'); svg.classList.add('focus-' + line); }
+      });
+    });
+
+    var filters = document.querySelectorAll('.filters button');
+    filters.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.dataset.filter;
+        filters.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+        document.querySelectorAll('.pubs li[data-line]').forEach(function (li) {
+          li.hidden = !(f === 'all' || li.dataset.line === f);
+        });
+        document.querySelectorAll('.pub-group').forEach(function (g) {
+          var visible = g.querySelectorAll('li:not([hidden])').length;
+          g.hidden = visible === 0;
+        });
+      });
+    });
+
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = document.getElementById(btn.dataset.copy).textContent;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, function () {});
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
